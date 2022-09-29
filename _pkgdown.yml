@@ -1,0 +1,33 @@
+url: ~
+template:
+  bootstrap: 5
+  bootswatch: minty
+reference:
+- title: Wine dataset
+  desc: >
+    Function for accessing the wine dataset
+- contents:
+  - wine
+- title: Exploring wine point and price
+  desc: >
+    Function for calculating mean point, mean price and total number of wines in different countries
+- contents:
+  - point_price
+- title: Box plot about wine points and prices
+  desc: >
+    Function for drawing a box plot about wine points and prices in different countries
+- contents:
+  - boxPlot
+- title: Wordcloud plot about wine descriptions
+  desc: >
+    Function to compute a wordcloud plot about wine discriptions in different countries
+- contents:
+  - wordcloud
+- title: Wine shiny app
+  desc: >
+    Function for launching a shiny app about wine dataset
+- contents:
+  - myapp
+
+
+

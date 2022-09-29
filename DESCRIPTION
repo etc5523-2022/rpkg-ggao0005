@@ -1,11 +1,30 @@
-Package: change-this-to-your-pkg-name
-Title: What the Package Does (One Line, Title Case)
+Package: wine
+Title: Wine ratings and prices
 Version: 0.0.0.9000
-Authors@R: 
-    person("First", "Last", , "your@email.com", role = c("aut", "cre"))
-Description: What the package does (one paragraph).
+Author: Gui Gao
+Maintainer: Gui Gao <ggao0005@student.monash.edu>
+Description: Analysis of average points, average prices, total number and descriptions of wines from different countries.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Language: es
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.1
+Depends: 
+    R (>= 2.10)
+LazyData: true
+Imports:
+    dplyr,
+    magrittr,
+    ggplot2,
+    shiny,
+    tidytext,
+    wordcloud2
+Suggests: 
+    knitr,
+    rmarkdown,
+    testthat (>= 3.0.0),
+    RColorBrewer,
+    maps
+VignetteBuilder: knitr
+Config/testthat/edition: 3
+LazyDataCompression:xz

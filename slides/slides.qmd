@@ -1,0 +1,226 @@
+---
+pagetitle: "R Package wine"
+author: "Gui Gao"
+format:
+  revealjs: 
+    slide-number: true
+    show-slide-number: all
+    theme: serif
+    transition: slide
+execute: 
+  echo: true
+---
+
+# `r rmarkdown::metadata$pagetitle`
+
+[`r rmarkdown::metadata$author`]{style="color: #800020; font-size:58px;"}
+
+```{css, echo = FALSE}
+body{
+  background-color: #ECECE5!important;
+}
+h1{
+  color: #800020!important;
+}
+h2{
+  color: #800020!important;
+  font-size: 64px!important;
+}
+```
+
+```{r, echo=FALSE, message=FALSE}
+library(dplyr)
+```
+
+## Content
+
+. . .
+
+- [Where]{style="color: #800020; font-weight: bold;"} do we find and install this package
+
+. . .
+
+- [Why]{style="color: #800020; font-weight: bold;"} I design this package
+
+. . .
+
+- [What]{style="color: #800020; font-weight: bold;"} this package does
+
+. . .
+
+- [How]{style="color: #800020; font-weight: bold;"} to use this package
+
+. . . 
+
+![](let_us_begin.gif)
+
+## Where
+
+. . . 
+
+### 💎Find
+
+- You can click <a href="https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2019/2019-05-28/winemag-data-130k-v2.csv" style="color:#692020">here</a> to jump to a browser page with detailed information about the `wine` package.
+
+### 📥Install
+
+- You can load the `wine` package using the `library()` function.
+
+```{r}
+library(wine)
+```
+
+## Why
+
+. . . 
+
+- 👤Target Audience: people interested in wine and looking for some higher points of wines
+
+. . . 
+
+- Help users to get important information about wine points, prices for different countries
+
+. . . 
+
+- You can quickly get a sense of the keywords about the flavor of wines by looking at the wordcloud plot
+
+## What and How 
+
+. . . 
+
+### 🍷Data
+
+. . . 
+
+- There is a built-in dataset `wine` in the **wine** package, which is provided by **Kaggle** for wine enthusiast ratings.
+
+. . . 
+
+- You can see it by clicking the <a href="https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2019/2019-05-28/winemag-data-130k-v2.csv" style="color:#692020">link</a>.
+
+. . . 
+
+```{r}
+glimpse(wine)
+```
+
+---
+
+### `point_price` function
+
+. . . 
+
+::: {.panel-tabset}
+
+### Code
+
+```{r, eval=FALSE}
+#' Wine points and prices
+#'
+#' @description
+#' Showing average points and average prices of wines from different countries.
+#'
+#' @param w A character of country of wine origin.
+#'
+#' @return
+#' A tibble object or a sentence. If the `input_country` is in the dataset, it will return a tibble includes mean point, mean price and total number of wines from different country. If the `input_country` is not in the dataset, or if an incorrect country is input, it will prompt you with a sentence.
+#'
+#' @examples
+#' point_price("Australia")
+#'
+#' @export
+point_price <- function(w) {
+
+  `%>%` <- magrittr::`%>%`
+  wine <- wine::wine
+
+  if(w %in% wine$country) {
+    out <- wine %>%
+      dplyr::select(country, points, price) %>%
+      dplyr::filter(!is.na(country)) %>%
+      dplyr::group_by(country) %>%
+      dplyr::summarise(mean_point = mean(points, na.rm = T),
+                       mean_price = mean(price, na.rm = T)) %>%
+      dplyr::mutate(total_wines = dplyr::n()) %>%
+      dplyr::filter(country == w)
+    return(out) }
+
+  else
+    return('Sorry, there is no information about the wines of this country available here.')
+}
+```
+
+### Output
+
+- if the `input_country` is in the dataset
+
+```{r}
+point_price("US")
+```
+
+- if the `input_country` is not in the dataset
+
+```{r}
+point_price("world")
+```
+
+:::
+
+---
+
+### `boxPlot` function
+
+. . . 
+
+```{r}
+#| fig.height = 5
+boxPlot("US")
+```
+
+. . . 
+
+[You can see the relationship between wine *points* and *prices* in the box plot]{style="font-size:32px;"}
+
+---
+
+### `wordcloud` function
+
+. . . 
+
+```{r}
+wordcloud("Canada")
+```
+
+. . . 
+
+[The wordcloud plot can help you understand the textual information about the wine descriptions]{style="font-size:34px;"}
+
+---
+
+### `myapp` function
+
+. . . 
+
+```{r, eval = FALSE}
+myapp()
+```
+
+. . . 
+
+![](myapp.png){.absolute top=140 right=140 width="820" height="410"}
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+. . . 
+
+[The shiny app can be launched from the `wine` package, it can help you understand *wine* dataset]{style="font-size:34px;"}
+
+# Thank you!
+![](cheers.gif)

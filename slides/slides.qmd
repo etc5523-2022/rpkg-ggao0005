@@ -185,8 +185,6 @@ boxPlot("US")
 
 ### `wordcloud` function
 
-. . . 
-
 ```{r}
 wordcloud("Canada")
 ```

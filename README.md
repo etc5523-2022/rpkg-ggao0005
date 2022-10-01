@@ -47,7 +47,7 @@ str(wine)
 You can enter a country in `point_price()` to see the mean point, mean price and total number of wines in that country.
 
 ``` r
-point_price("Australia")
+point_price("US")
 #> # A tibble: 1 × 4
 #>   country mean_point mean_price total_wines
 #>   <chr>        <dbl>      <dbl>       <int>

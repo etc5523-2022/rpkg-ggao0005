@@ -120,8 +120,8 @@ For more details about this function, you can use the function `?wine::boxPlot`
 
 You can type a country into the function and it will draw a wordcloud plot about wine descriptions for this country.
 
-```{r, eval=FALSE}
-wordcloud("England")
+```{r}
+wordcloud("Canada")
 ```
 
 If you enter an incorrect country or if the dataset does not contain data for that country, `wordcloud()` will draw a wordcloud plot with all wine descriptions.

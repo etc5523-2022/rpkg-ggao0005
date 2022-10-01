@@ -50,7 +50,7 @@ str(wine)
 You can enter a country in `point_price()` to see the mean point, mean price and total number of wines in that country.
 
 ```{r}
-point_price("Australia")
+point_price("US")
 ```
 
 If there is not any data in the `wine` dataset for the country you entered, a message will appear.
